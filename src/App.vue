@@ -1,7 +1,7 @@
 <template>
   <TheMenu />
   <main>
-    <div class="notices">
+    <div class="flex flex-row justify-center items-center notices">
       <img src="@/assets/truck.svg" />
       <span class="advice">
         ¡Contrata hoy y obtén <b>los mejores beneficios</b>

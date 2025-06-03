@@ -1,27 +1,28 @@
 <template>
-  <div class="menu">
+  <div class="flex flex-row justify-around items-center md:justify-between xl:justify-between menu">
     <img class="logo" src="@/assets/logo.svg"/>
-    <div class="menu-items">
+    <div class="hidden md:flex md:flex-row xl:flex xl:flex-row menu-items">
       <TheButton
         v-for="item in menuItems"
         :key="item.name" :text="item.name"
         :href="item.route"
-        btn
         uppercase
-        class="items" />
+        class="items"
+      />
     </div>
-    <TheButton class="btn-hire" href="#" :text="textForButton" btn uppercase type="primary"/>
-    <div class="menu-mobile">
-      <TheButton @click="toggleMenu" href="#" icon="menu.svg" btn/>
+    <TheButton class="btn-hire" href="#" :text="textForButton" uppercase type="primary" />
+    <div class="flex md:hidden xl:hidden menu-mobile">
+      <TheButton @click="toggleMenu" href="#" icon="menu.svg" btn />
     </div>
-    <nav v-if="openMenu">
-      <ul>
-        <li v-for="item in menuItems" :key="item.name">
-          <a :href="item.route">{{ item.name }}</a>
-        </li>
-      </ul>
-    </nav>
-
+    <Transition name="fade-height" mode="out-in">
+      <nav v-if="openMenu">
+        <ul>
+          <li v-for="item in menuItems" :key="item.name">
+            <TheButton :href="item.route" :text="item.name" uppercase />
+          </li>
+        </ul>
+      </nav>
+    </Transition>
   </div>
 </template>
 
@@ -81,4 +82,15 @@ const textForButton = computed(() => {
 </script>
 
 <style lang="css">
+.fade-height-enter-active,
+.fade-height-leave-active {
+  transition: all 0.2s;
+  max-height: 230px;
+}
+.fade-height-enter,
+.fade-height-leave-to
+{
+  opacity: 0;
+  max-height: 0px;
+}
 </style>

@@ -22,6 +22,9 @@ interface Props {
 const props = defineProps<Props>();
 
 const buttonClasses = computed(() => ({
+  'flex': true,
+  'items-center': true,
+  'justify-center': true,
   'btn': true,
   'uppercase': props.uppercase,
   'btn-outlined': props.outlined,
